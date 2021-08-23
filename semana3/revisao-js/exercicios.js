@@ -136,10 +136,33 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-
+   let consultasOrdemAlfabetica = consultas.sort(function (a, b) {
+      if (a.nome > b.nome) {
+        return 1;
+      }
+      if (a.nome < b.nome) {
+        return -1;
+      }
+      return 0;
+    })
+    return consultasOrdemAlfabetica;
 }
+
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-
+  let consultasPorData = consultas.sort(function (a, b) {
+    let arrayDataA = a.dataDaConsulta.split("/");
+    let dataA = new Date(arrayDataA[2], arrayDataA[1], arrayDataA[0]).getTime();
+    let arrayDataB = b.dataDaConsulta.split("/");
+    let dataB = new Date(arrayDataB[2], arrayDataB[1], arrayDataB[0]).getTime();
+    if (dataA > dataB) {
+      return 1;
+    }
+    if (dataA < dataB) {
+      return -1;
+    }
+    return 0;
+  })
+  return consultasPorData;
 }
