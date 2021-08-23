@@ -123,15 +123,23 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
+   contas.forEach((objeto) => {
+      let valorComprasTotal = 0;
+      objeto.compras.forEach((valor) => {
+        valorComprasTotal += valor;
+      })
+      objeto.saldoTotal -= valorComprasTotal;
+      objeto.compras = []
+    })
+   return contas;
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-   
+
 }
