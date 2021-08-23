@@ -28,7 +28,7 @@ function retornaNumerosPares(array) {
    arrPar = [];
    for (i = 0; i < array.length; i++) {
       if (array[i] % 2 === 0) {
-         arrPar.push(array[i])
+         arrPar.push(array[i]);
       }
    }
    return arrPar;
@@ -36,7 +36,13 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+   arrPar = [];
+   for (i = 0; i < array.length; i++) {
+      if (array[i] % 2 === 0) {
+         arrPar.push(Math.pow(array[i], 2));
+      }
+   }
+   return arrPar;
 }
 
 // EXERCÍCIO 06
