@@ -129,16 +129,21 @@ td button:active {
 
 .container-do-search {
     margin-top: 20px;
-    display: flex;
     align-items: center;
+    margin: 20px auto;
 }
 
-.container-dos-produtos {
+.container-dos-produtos > table {
     text-align: center;
+    margin: 0 auto;
 }
 
 .imagem-produto {
     width: 50px;
+}
+
+.back-button {
+    text-align: center;
 }
 
 #back-button {
