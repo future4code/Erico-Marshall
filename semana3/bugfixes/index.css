@@ -121,6 +121,10 @@ td button {
     height: 100px;
 }
 
+.imagem-produto {
+    width: 50px;
+}
+
 
 #back-button {
     background-color: white;
