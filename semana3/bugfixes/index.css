@@ -83,6 +83,7 @@ a {
 #container-de-descricao>ol {
     padding: 15px 0px;
     margin-top: 50px;
+    list-style-position: inside;
 }
 
 #container-para-comprar {
@@ -94,7 +95,6 @@ a {
     padding: 100px 0;
     font-size: 60px;
 }
-
 
 /**
   *
@@ -133,6 +133,14 @@ td button:active {
     margin: 20px auto;
 }
 
+#search-button:hover {
+    opacity: 50%;
+}
+
+#search-button:active {
+    opacity: 100%;
+}
+
 .container-dos-produtos > table {
     text-align: center;
     margin: 0 auto;
@@ -157,5 +165,6 @@ td button:active {
 }
 
 #back-button:hover {
-    background-color: #635a3d
+    background-color: #635a3d;
+    cursor: pointer;
 }
