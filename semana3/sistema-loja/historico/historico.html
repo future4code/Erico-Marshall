@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Histórico de Vendas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script>
+        function BuscaPorData(){
+            alert("Botão funciona!");
+        //     alert('evento funcionando');
+        //     let vendasPorData = event.sort(function (a, b) {
+        //     let arrayDataA = a.dataDaVenda.split("/");
+        //     let dataA = new Date(arrayDataA[2], arrayDataA[1], arrayDataA[0]).getTime();
+        //     let arrayDataB = b.dataDaVenda.split("/");
+        //     let dataB = new Date(arrayDataB[2], arrayDataB[1], arrayDataB[0]).getTime();
+        //     if (dataA > dataB) {
+        //         return 1;
+        //     }
+        //     if (dataA < dataB) {
+        //         return -1;
+        //     }
+        //     return 0;
+        //     })
+        //     return vendasPorData;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div>
+            <h1><em>Carpinteiro do Universo</em></h1>
+        </div>
+        
+        <div>
+            <a id="itens-cabecalho" href="../index/index.html">Página Inicial</a>
+            <a id="itens-cabecalho" href="./ctrl-estoque.html">Controle de Estoque</a>
+            <a id="itens-cabecalho" href="../add-produtos/add-produto.html">Adicionar Produto</a>
+            <a id="itens-cabecalho" href="../funcionarios/funcionarios.html">Funcionários</a>
+            <a id="itens-cabecalho" href="../vendas/vendas.html">Área do Vendedor</a>
+        </div>
+    </header>
+
+    <h2 >Controle de Estoque</h2>
+
+    <table class="controle-estoque" id="tabela">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Funcionário</th>
+                <th>Valor</th>
+                <th>Pagamento</th>
+                <th>Hora</th>
+                <th>Data
+
+                </th>
+            </tr>
+            <tr>
+                <th><input type="text" id="item"/></th>
+                <th><input type="text" id="funcionario"/></th>
+                <th><input type="number" id="valor"/></th>
+                <th><input type="text" id="pagamento"/></th>
+                <th><input type="text" id="hora"/></th>
+                <th>
+                    <input type="text">
+                        <button type="submit" onclick="BuscaPorData()">
+                            <img class="logo-filtro-pesquisa" src="../img/calendarioFiltro.png" width="20px" alt=""/>
+                        </button>
+                </th>
+            </tr>             
+        </thead>
+        <tbody>
+            <tr>
+                <td>Pizza</td>
+                <td>Raiê</td>
+                <td>45</td>
+                <td>Crédito</td>
+                <td>21:45:32</td>
+                <td>21/08/2021</td>
+            </tr>
+            <tr>
+                <td>Pizza</td>
+                <td>Bernardo</td>
+                <td>90</td>
+                <td>Débito</td>
+                <td>22:00:09</td>
+                <td>21/08/2021</td>
+            </tr>             
+            <tr>
+                <td>Jóias Do Infinito</td>
+                <td>Raiê</td>
+                <td>20</td>
+                <td>Pix</td>
+                <td>16:20:00</td>
+                <td>22/08/2021</td>
+            </tr>
+            <tr>
+                <td>Jóias Do Infinito</td>
+                <td>Érico</td>
+                <td>60</td>
+                <td>Dinheiro</td>
+                <td>16:21:37</td>
+                <td>02/08/2021</td>
+            </tr>
+            <tr>
+                <td>Pizza</td>
+                <td>Raiê</td>
+                <td>135</td>
+                <td>Pix</td>
+                <td>18:37:00</td>
+                <td>01/08/2021</td>
+            </tr>             
+        </tbody>
+    </table>
+    <footer>
+        <p>Siga-nos nas redes sociais!</p>
+
+        <div>
+            <a href="https://www.youtube.com/watch?v=Hy8kmNEo1i8" target="blank"><img class="icone-redes" src="../img/youtube.png"/></a>
+            <a href="https://www.instagram.com/_emarshall/" target="blank"><img class="icone-redes" src="../img/instagram.png"/></a>
+            <a href="https://twitter.com/e_gmarshall" target="blank"><img class="icone-redes" src="../img/twitter.png"/></a>
+            <a href="https://www.linkedin.com/in/ericomarshall/" target="blank"><img class="icone-redes"src="../img/linkedin.png"/></a>
+        </div>
+    </footer>
+</body>
+</html>
