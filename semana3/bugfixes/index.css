@@ -121,6 +121,10 @@ td button {
     height: 100px;
 }
 
+.container-dos-produtos {
+    text-align: center;
+}
+
 .imagem-produto {
     width: 50px;
 }
