@@ -8,6 +8,8 @@ import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 
+
+
 const PostContainer = styled.div`
   border: 1px solid gray;
   width: 300px;
@@ -45,7 +47,8 @@ class Post extends React.Component {
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
-    numeroComentarios: 0
+    numeroComentarios: 0,
+    favorito: false
   }
 
   onClickCurtida = () => {
@@ -58,6 +61,18 @@ class Post extends React.Component {
       this.setState({
         curtido: false,
         numeroCurtidas: this.state.numeroCurtidas - 1
+      })
+    }
+  }
+
+  onClickFavorito = () => {
+    if (!this.state.favorito) {
+      this.setState({
+        favorito: true
+      })
+    } else {
+      this.setState({
+        favorito: false
       })
     }
   }
@@ -76,6 +91,15 @@ class Post extends React.Component {
   }
 
   render() {
+    let iconeFavorito
+
+    if (this.state.favorito) {
+      iconeFavorito = iconeCoracaoPreto
+    } else {
+      iconeFavorito = iconeCoracaoBranco
+    }
+
+
     let iconeCurtida
 
     if(this.state.curtido) {
@@ -110,6 +134,12 @@ class Post extends React.Component {
           onClickIcone={this.onClickComentario}
           valorContador={this.state.numeroComentarios}
         />
+
+        <IconeComContador
+          icone={iconeFavorito}
+          onClickIcone={this.onClickFavorito}
+        />
+
       </PostFooter>
       {componenteComentario}
     </PostContainer>
