@@ -7,6 +7,7 @@ import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
+import {SecaoCompartilhar} from '../SecaoCompartilhar/SecaoCompartilhar'
 
 
 
@@ -48,7 +49,8 @@ class Post extends React.Component {
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0,
-    favorito: false
+    favorito: false,
+    compartilhando: false
   }
 
   onClickCurtida = () => {
@@ -83,10 +85,22 @@ class Post extends React.Component {
     })
   }
 
+  onClickCompartilhar = () => {
+    this.setState({
+      compartilhando: !this.state.compartilhando
+    })
+  }
+
   aoEnviarComentario = () => {
     this.setState({
       comentando: false,
       numeroComentarios: this.state.numeroComentarios + 1
+    })
+  }
+
+  aoEnviarCompartilhamento = () => {
+    this.setState({
+      compartilhando: false
     })
   }
 
@@ -109,9 +123,15 @@ class Post extends React.Component {
     }
 
     let componenteComentario
-
+    console.log(this.state.comentando)
     if(this.state.comentando) {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
+    }
+
+    let componenteCompartilhar 
+
+    if(this.state.compartilhando) {
+      componenteCompartilhar = <SecaoCompartilhar aoEnviar={this.aoEnviarCompartilhamento}/>
     }
 
     return <PostContainer>
@@ -140,8 +160,14 @@ class Post extends React.Component {
           onClickIcone={this.onClickFavorito}
         />
 
+        <IconeComContador
+          icone = {iconeComentario}
+          onClickIcone={this.onClickCompartilhar}
+        />
+
       </PostFooter>
       {componenteComentario}
+      {componenteCompartilhar}
     </PostContainer>
   }
 }
