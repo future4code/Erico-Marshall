@@ -7,8 +7,32 @@ const MainContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  input {
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+  }
+
+  button {
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    background-color: gray;
+  }
 `
 
+const containerFormulario = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 class App extends React.Component {
 
   state = {
@@ -63,8 +87,6 @@ class App extends React.Component {
     this.setState({inputValorPostUsuario:event.target.value});
   };
 
-
-
   render() {
     const publicacaoUsuarios = this.state.usuarios.map((usuario) => {
       return (
@@ -78,6 +100,8 @@ class App extends React.Component {
 
     return (
       <MainContainer>
+
+        <containerFormulario>
           <input
             value={this.state.inputValorNomeUsuario}
             onChange={this.onChangeNomeUsuario}
@@ -95,7 +119,7 @@ class App extends React.Component {
           />
 
           <button onClick={this.adicionarUsuario}>Adicionar</button>
-
+        </containerFormulario>
           {publicacaoUsuarios}
       </MainContainer>
     );
