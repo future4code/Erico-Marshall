@@ -34,6 +34,34 @@ class App extends React.Component {
     inputValorPostUsuario: ""
   }
 
+  adicionarUsuario = () => {
+    const copiaUsuarios = [...this.state.usuarios];
+    if(this.state.inputNomeUsuario === "") {
+      alert("Preencha seu usuário!");
+      return;
+    }
+
+    const novoUsuario = {
+      nomeUsuario: this.state.inputValorNomeUsuario,
+      fotousuario: this.state.inputValorFotoUsuario,
+      fotoPost: this.state.inputValorPostUsuario
+    };
+
+    copiaUsuarios.push(novoUsuario);
+    this.setState({usuarios:copiaUsuarios, inputValorNomeUsuario: "", inputValorFotoUsuario: "", inputValorPostUsuario: ""})
+  }
+
+  onChangeNomeUsuario = (event) => {
+    this.setState({inputValorNomeUsuario:event.target.value});
+  };
+
+  onChangeFotoUsuario = (event) => {
+    this.setState({inputValorFotoUsuario:event.target.value});
+  };
+
+  onChangePostUsuario = (event) => {
+    this.setState({inputValorPostUsuario:event.target.value});
+  };
 
 
 
@@ -50,9 +78,25 @@ class App extends React.Component {
 
     return (
       <MainContainer>
-        <div>
+          <input
+            value={this.state.inputValorNomeUsuario}
+            onChange={this.onChangeNomeUsuario}
+            placeholder="Nome do usuário"
+          />
+          <input
+            value={this.state.inputValorFotoUsuario}
+            onChange={this.onChangeFotoUsuario}
+            placeholder="Foto do usuário"
+          />
+          <input
+            value={this.state.inputValorPostUsuario}
+            onChange={this.onChangePostUsuario}
+            placeholder="Post do usuário"
+          />
+
+          <button onClick={this.adicionarUsuario}>Adicionar</button>
+
           {publicacaoUsuarios}
-        </div>
       </MainContainer>
     );
   }
