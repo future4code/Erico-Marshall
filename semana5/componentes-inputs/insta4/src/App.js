@@ -10,6 +10,30 @@ const MainContainer = styled.div`
 `
 
 class App extends React.Component {
+
+  state = {
+    usuarios: [
+      {
+        nomeUsuario: "Paulinha",
+        fotoUsuario: "https://picsum.photos/50/50?random=0",
+        fotoPost: "https://picsum.photos/200/150?random=0"
+      },
+      {
+        nomeUsuario: "_emarshall",
+        fotoUsuario: "https://picsum.photos/50/50?random=0",
+        fotoPost: "https://picsum.photos/200/150?random=0"
+      },
+      {
+        nomeUsuario: "João Cardholder_jr",
+        fotoUsuario: "https://picsum.photos/50/50?random=0",
+        fotoPost: "https://picsum.photos/200/150?random=0"
+      }
+    ]
+  }
+
+
+
+
   render() {
     return (
       <MainContainer>
