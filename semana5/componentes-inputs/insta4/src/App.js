@@ -28,7 +28,7 @@ const MainContainer = styled.div`
   }
 `
 
-const containerFormulario = styled.div`
+const ContainerFormulario = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +101,7 @@ class App extends React.Component {
     return (
       <MainContainer>
 
-        <containerFormulario>
+        <ContainerFormulario>
           <input
             value={this.state.inputValorNomeUsuario}
             onChange={this.onChangeNomeUsuario}
@@ -119,7 +119,7 @@ class App extends React.Component {
           />
 
           <button onClick={this.adicionarUsuario}>Adicionar</button>
-        </containerFormulario>
+        </ContainerFormulario>
           {publicacaoUsuarios}
       </MainContainer>
     );

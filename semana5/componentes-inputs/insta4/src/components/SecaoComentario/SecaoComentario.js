@@ -14,22 +14,44 @@ const InputComentario = styled.input`
 
 export class SecaoComentario extends Component {
 	state = {
+		comentarios: [],
 		valorComentario: ''
 	}
 
-	onChangeComentario = (event) => {
+	adicionarComentario = () => {
+		const copiaComentarios = [...this.state.comentarios];
+
+		const novoComentario = {
+			comentario:this.state.valorComentario
+		};
+
+		copiaComentarios.push(novoComentario);
+		this.setState({comentarios: copiaComentarios, valorComentario: ""})
+	}
+
+	aoEnviarComentario = (event) => {
 		console.log(event.target.value);
 		this.setState({valorComentario: event.target.value})
 	}
 
 	render() {
+		const componentes = this.state.comentarios.map((cadaComentario) => {
+			return (
+				<CommentContainer key = {cadaComentario.comentario}>
+					<p>{cadaComentario}</p>
+				</CommentContainer>
+			)
+		})
+
+
 		return <CommentContainer>
 			<InputComentario
 				placeholder={'Comentário'}
 				value={this.state.valorComentario}
-				onChange={this.onChangeComentario}
+				onChange={this.aoEnviarComentario}
 			/>
-			<button onClick={this.props.aoEnviar}>Enviar</button>
+			<button onClick={this.adicionarComentario}>Enviar</button>
+			<div>{componentes}</div>
 		</CommentContainer>
 	}
 }
