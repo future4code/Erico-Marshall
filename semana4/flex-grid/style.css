@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: mediumvioletred;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.logo-titulo {
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    margin: 10px;
+}
+ 
+img {
+    width: 20px;
+    height: 20px;
+}
+
+button {
+    height: 22px;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    background-color: white;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 25px 100px 100px;
+    grid-template-rows: 30px 30px 30px 70vh;
+    background-color: #f2d0e0;
+    gap: 5px;
+    padding: 10px;
+}
+
+#flecha-seleciona {
+    justify-self: right;
+}
+
+.menu-bolos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    margin: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.cartao-bolo > img {
+    width: 210px;
+    height: 210px;
+}
+
+.cartao-bolo {
+    box-shadow: 2px 0px 2px 0px gray
+}
+
+footer {
+    background-color: mediumvioletred;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
