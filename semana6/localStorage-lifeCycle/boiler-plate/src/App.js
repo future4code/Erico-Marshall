@@ -36,12 +36,27 @@ class App extends React.Component {
       filtro: ''
     }
 
-  componentDidUpdate() {
 
+  saveInLocalStorage = () => {
+    const text = this.state.tarefas;
+    const textString = JSON.stringify(text);
+    window.localStorage.setItem("tarefa", textString);
+  };
+
+  getFromLocalStorage = () => {
+    const textString = window.localStorage.getItem("tarefa");
+    if (textString) {
+      const text = JSON.parse(textString);
+      this.setState({tarefas: text});
+    }
+  }
+
+  componentDidUpdate() {
+    this.saveInLocalStorage();
   };
 
   componentDidMount() {
-
+    this.getFromLocalStorage();
   };
 
   onChangeInput = (event) => {
