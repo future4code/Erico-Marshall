@@ -24,12 +24,12 @@ class App extends React.Component {
         {
           id: Date.now(),
           texto: 'Texto da primeira tarefa',
-          completa: false // Indica se a tarefa está completa (true ou false)
+          completa: false
         },
         {
           id: Date.now(),
           texto: 'Texto da segunda tarefa',
-          completa: true // Indica se a tarefa está completa (true ou false)
+          completa: true
         }
       ],
       inputValue: '',
@@ -72,6 +72,18 @@ class App extends React.Component {
     }
     copiaTarefas.push(novaTarefa);
     this.setState({tarefas: copiaTarefas, texto: ""})
+  }
+
+  onClickRemoverTarefa = (indexParaRemover) => {
+    const copiaTarefas = this.state.tarefas.filter((indexCadaTarefa) => {
+      if (indexParaRemover === indexCadaTarefa) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    
+    this.setState({tarefas: copiaTarefas });
   }
 
   selectTarefa = (id) => {
@@ -133,6 +145,7 @@ class App extends React.Component {
               </Tarefa>
             )
           })}
+          {/* <button onClick={() => this.onClickRemoverTarefa(index)}>X</button> */}
         </TarefaList>
       </div>
     )
