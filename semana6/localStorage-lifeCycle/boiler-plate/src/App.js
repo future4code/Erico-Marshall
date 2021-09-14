@@ -20,7 +20,18 @@ const InputsContainer = styled.div`
 
 class App extends React.Component {
     state = {
-      tarefas: [],
+      tarefas: [
+        {
+          id: Date.now(),
+          texto: 'Texto da primeira tarefa',
+          completa: false // Indica se a tarefa está completa (true ou false)
+        },
+        {
+          id: Date.now(),
+          texto: 'Texto da segunda tarefa',
+          completa: true // Indica se a tarefa está completa (true ou false)
+        }
+      ],
       inputValue: '',
       filtro: ''
     }
@@ -34,15 +45,33 @@ class App extends React.Component {
   };
 
   onChangeInput = (event) => {
-
+    this.setState({inputValue: event.target.value});
   }
 
   criaTarefa = () => {
-
+    const copiaTarefas = [...this.state.tarefas];
+    const novaTarefa = {
+      id: Date.now(),
+      texto: this.state.inputValue,
+      completa: false
+    }
+    copiaTarefas.push(novaTarefa);
+    this.setState({tarefas: copiaTarefas, texto: ""})
   }
 
   selectTarefa = (id) => {
-
+    const novaListaTarefas = this.state.tarefas.map((tarefa) => {
+      if (id === tarefa.id) {
+        const novaTarefa = {
+          ...tarefa,
+          completa: !tarefa.completa
+        }
+        return novaTarefa
+      } else {
+        return tarefa
+      }
+    })
+    this.setState({tarefas: novaListaTarefas})
   }
 
   onChangeFilter = (event) => {
