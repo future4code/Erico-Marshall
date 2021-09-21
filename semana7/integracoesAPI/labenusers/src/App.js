@@ -9,9 +9,22 @@ const ContainerPagina = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 `
+const BotaoPagina = styled.button`
+    margin-top: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  
+  :hover {
+    color: white;
+    background-color: darkgray;
+  }
 
+  :active {
+    color: lightgray
+  }
+`
 const headers = {
   headers: {
     Authorization: "erico-marshall-maryam"
@@ -120,7 +133,7 @@ export default class App extends React.Component {
     return (
       <ContainerPagina>
         {this.renderPage()}
-        <button onClick={() => this.enterFormPage()}>{this.state.pageForm === true ? "Ver Lista" : "Ver Formulário"}</button>
+        <BotaoPagina onClick={() => this.enterFormPage()}>{this.state.pageForm === true ? "Ver Lista" : "Ver Formulário"}</BotaoPagina>
       </ContainerPagina>
     );
   };

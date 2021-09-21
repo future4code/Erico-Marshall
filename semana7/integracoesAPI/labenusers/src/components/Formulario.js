@@ -8,10 +8,25 @@ const ContainerFormulario = styled.div`
   
   input {
     margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: lightgray;
+    font-size: 18px;
+  }
+`
+const BotaoFormulario = styled.button`
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+
+  :hover {
+    color: white;
+    background-color: darkgray;
   }
 
-  button {
-    margin: 50px 0;
+  :active {
+    color: lightgray
   }
 `
 
@@ -20,19 +35,19 @@ export default class Formulario extends React.Component {
         return (
             <ContainerFormulario>
           <h1>Formulário de Usuários</h1>
-          <label for="username"> Nome para Cadastro:</label>
+          <label htmlFor="username"> Nome para Cadastro:</label>
           <input
             placeholder="Nome do Usuário"
             value={this.props.userName}
             onChange={this.props.handleUserName}
           />
-          <label for="usermail"> E-Mail para Cadastro:</label>
+          <label htmlFor="usermail"> E-Mail para Cadastro:</label>
           <input 
             placeholder="E-mail do Usuário"
             value={this.props.userMail}
             onChange={this.props.handleUserMail}
           />
-          <button onClick={this.props.createUser}>Enviar</button>
+          <BotaoFormulario onClick={this.props.createUser}>Enviar</BotaoFormulario>
         </ContainerFormulario>
         )
     }
