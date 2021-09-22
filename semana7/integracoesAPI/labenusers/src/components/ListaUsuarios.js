@@ -54,10 +54,11 @@ const headers = {
   }
 };
 
-export default class Lista extends React.Component {
+export default class ListaUsuarios extends React.Component {
 
   state = {
-    detalheUsuario: []
+    detalheUsuario: [],
+    detailPage: false
   }
 
   getUserById = (id) => {
@@ -76,7 +77,6 @@ export default class Lista extends React.Component {
     });
   };
 
-
     render () {
 
     const userComponents = this.props.users.map((user) => {
@@ -92,9 +92,6 @@ export default class Lista extends React.Component {
           <h1>Usuários Cadastrados:</h1>
           <ListaUsuarios>
             {userComponents}
-            <DetalheUsuario
-            detalheUsuario = {this.state.detalheUsuario}
-            />
           </ListaUsuarios>
         </ContainerLista>
      )

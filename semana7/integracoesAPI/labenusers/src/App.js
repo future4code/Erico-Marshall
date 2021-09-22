@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Formulario from './components/Formulario';
-import Lista from './components/Lista';
+import PaginaUsuarios from './components/PaginaUsuarios';
 
 
 const ContainerPagina = styled.div`
@@ -75,20 +75,21 @@ export default class App extends React.Component {
     });
   };
 
-  deleteUser = (id) => {
+  deleteUser = async (id, name) => {
     const url =
     `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
 
-    axios
-    .delete(url, headers)
-    .then((res) => {
-      console.log(res);
-      this.getAllUsers();
-      
-    })
-    .catch((error) => {
-      alert(error.response.data.message);
-    });
+    await axios.delete(url, headers)
+
+    const confirmDelete = window.confirm(`Você tem certeza de que deseja excluir o usuário ${name}?`)
+    if (confirmDelete) {
+      try {
+        this.getAllUsers();
+      }
+      catch(error) {
+        alert(error.response.data.message);
+      };
+    }
   }
 
 
@@ -122,7 +123,7 @@ export default class App extends React.Component {
         enterListPage = {this.enterListPage}
         />
     } else {
-      return <Lista 
+      return <PaginaUsuarios 
         users = {this.state.users}
         enterFormPage = {this.enterFormPage}
         deleteUser = {this.deleteUser}
@@ -137,7 +138,7 @@ export default class App extends React.Component {
     return (
       <ContainerPagina>
         {this.renderPage()}
-        <BotaoPagina onClick={() => this.enterFormPage()}>{this.state.pageForm === true ? "Ver Lista" : "Ver Formulário"}</BotaoPagina>
+        <BotaoPagina onClick={() => this.enterFormPage()}>{this.state.pageForm === true ? "Ver Lista dos Usuários" : "Ver Formulário"}</BotaoPagina>
       </ContainerPagina>
     );
   };
