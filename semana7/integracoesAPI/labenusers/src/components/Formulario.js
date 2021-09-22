@@ -17,7 +17,7 @@ const ContainerFormulario = styled.div`
 `
 const BotaoFormulario = styled.button`
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 5px;
 
   :hover {

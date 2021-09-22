@@ -35,6 +35,7 @@ export default class App extends React.Component {
 
   state = {
     users: [],
+    detalheUsuario: [],
     userName: "",
     userMail: "",
     pageForm: true
@@ -75,7 +76,6 @@ export default class App extends React.Component {
   };
 
   deleteUser = (id) => {
-
     const url =
     `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
 
@@ -90,6 +90,8 @@ export default class App extends React.Component {
       alert(error.response.data.message);
     });
   }
+
+
 
   getAllUsers = () => {
     const url = 
@@ -124,6 +126,8 @@ export default class App extends React.Component {
         users = {this.state.users}
         enterFormPage = {this.enterFormPage}
         deleteUser = {this.deleteUser}
+        getUserById = {this.getUserById}
+        detalheUsuario = {this.state.detalheUsuario}
         />
     }
   }
