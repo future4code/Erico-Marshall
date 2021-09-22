@@ -79,20 +79,22 @@ export default class App extends React.Component {
     const url =
     `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`
 
-    await axios.delete(url, headers)
-
     const confirmDelete = window.confirm(`Você tem certeza de que deseja excluir o usuário ${name}?`)
+
     if (confirmDelete) {
-      try {
-        this.getAllUsers();
-      }
-      catch(error) {
-        alert(error.response.data.message);
-      };
+      await axios.delete(url, headers)
+        try {
+          this.getAllUsers();
+          alert(`Usuário ${name} deletado!`)
+        }
+        catch(error) {
+          alert(error.response.data.message);
+        };
+    } else {
+      alert(`Usuário ${name} NÃO deletado!`);
     }
+    
   }
-
-
 
   getAllUsers = () => {
     const url = 
