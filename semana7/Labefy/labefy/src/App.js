@@ -13,6 +13,64 @@ const ContainerCriaPlaylist = styled.div`
   margin-top: 20px;
   display: flex;
   align-items: center;
+
+  input {
+    border: none;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+
+    ::placeholder {
+      font-weight: bolder;
+    }
+  }
+`
+
+const BotaoCriaPlaylist = styled.button`
+  border: none;
+  border-radius: 5px;
+  background-color: darkgray;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  font-weight: bolder;
+
+  :hover {
+    color: lightgray;
+  }
+
+`
+
+const BotaoSelecionaPlaylist = styled.button`
+    margin: 0 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bolder;
+    color: gray;
+
+    :hover {
+      color: white;
+      background-color: gray;
+    }
+
+    :active {
+      color: lightgray;
+    }
+`
+
+const BotaoDeletaPlaylist = styled.button`
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  color: red;
+
+  :hover {
+    background-color: darkgray;
+  }
+
+  :active {
+    color: orangered;
+  }
 `
 
 const FaixaPlaylist = styled.div`
@@ -29,6 +87,62 @@ const ContainerMostraPlaylists = styled.div`
 const ContainerCriaMusica = styled.div`
   margin: 20px 0;
   display: flex;
+
+  input {
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+
+    ::placeholder {
+      font-weight: bolder;
+    }
+  }
+
+  button {
+    margin: 0 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bolder;
+    color: gray;
+
+    :hover {
+      color: white;
+      background-color: gray;
+    }
+
+    :active {
+      color: lightgray;
+    }
+  }
+`
+
+const ContainerDetalhePlaylist = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  color: white;
+
+  button {
+    font-weight: bolder;
+    margin-top: 20px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+
+  :hover {
+    background-color: darkgray;
+  }
+
+  :active {
+    color: orangered;
+  }
+  }
 `
 
 const headers = {
@@ -85,6 +199,7 @@ export default class App extends React.Component {
       .delete(url, headers)
       .then((res) => {
         this.getAllPlaylists();
+        this.setState({playlistID: ""})
       }).catch((error) => {
       alert("erro no deletePlaylist -", error.response.data.mesasge);
       })
@@ -153,8 +268,6 @@ export default class App extends React.Component {
     })
   };
 
-
-
   getPlaylistTracks = (id) => {
 
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}/tracks`;
@@ -176,20 +289,20 @@ export default class App extends React.Component {
     const playlistComponents = this.state.playlists.map((playlist) => {
       return (
       <FaixaPlaylist key={playlist.id}>
-        <button onClick={() => this.getPlaylistTracks(playlist.id)}><p>{playlist.name}</p></button>
-        <button onClick={() => this.deletePlaylist(playlist.id)}>Deletar</button>
+        <BotaoSelecionaPlaylist onClick={() => this.getPlaylistTracks(playlist.id)}><p>{playlist.name}</p></BotaoSelecionaPlaylist>
+        <BotaoDeletaPlaylist onClick={() => this.deletePlaylist(playlist.id)}>Deletar</BotaoDeletaPlaylist>
       </FaixaPlaylist>
       )
     })
 
     const playlistDetails = this.state.playlistDetail.map((song) => {
         return (
-        <div key={song.id}>
+        <ContainerDetalhePlaylist key={song.id}>
           <p><strong>Música:</strong> {song.name}</p>
           <p><strong>Autor:</strong> {song.artist}</p>
           <button onClick={() => this.removeTrackFromPlaylist(song.id)}>Deletar música</button>
           <iframe title={song.name} src={song.url} width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div>
+        </ContainerDetalhePlaylist>
         )
     })
 
@@ -202,7 +315,7 @@ export default class App extends React.Component {
           value={this.state.playlistName}
           onChange={this.handlePlaylistName}
           />
-          <button onClick={() => this.createPlaylist()}>Criar Playlist</button>
+          <BotaoCriaPlaylist onClick={() => this.createPlaylist()}>Criar Playlist</BotaoCriaPlaylist>
           
         </ContainerCriaPlaylist>
         <ContainerMostraPlaylists>
