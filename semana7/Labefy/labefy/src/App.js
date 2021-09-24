@@ -26,6 +26,10 @@ const ContainerMostraPlaylists = styled.div`
   display: flex;
   align-items: center;
 `
+const ContainerCriaMusica = styled.div`
+  margin: 20px 0;
+  display: flex;
+`
 
 const headers = {
   headers: {
@@ -47,6 +51,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getAllPlaylists();
+    this.getPlaylistTracks();
   };
 
   createPlaylist = () => {
@@ -101,7 +106,7 @@ export default class App extends React.Component {
         this.setState({songTitle: ""});
         this.setState({songArtist: ""});
         this.setState({songURL: ""});
-        this.getPlaylistTracks();
+        this.getPlaylistTracks(this.state.playlistID);
       })
       .catch((error) => {
         alert("erro no addTrackToPlaylist -",error.response.data.message);
@@ -159,7 +164,6 @@ export default class App extends React.Component {
       .then((res) => {
         this.setState({playlistDetail:res.data.result.tracks});
         this.setState({playlistID:id})
-        console.log(this.state.playlistID)
       })
       .catch((error) => {
         console.log("erro no getPlaylistTrack -",error.response);
@@ -181,7 +185,7 @@ export default class App extends React.Component {
     const playlistDetails = this.state.playlistDetail.map((song) => {
         return (
         <div key={song.id}>
-          <p><strong>Musica:</strong> {song.name}</p>
+          <p><strong>Música:</strong> {song.name}</p>
           <p><strong>Autor:</strong> {song.artist}</p>
           <button onClick={() => this.removeTrackFromPlaylist(song.id)}>Deletar música</button>
           <iframe title={song.name} src={song.url} width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -191,7 +195,7 @@ export default class App extends React.Component {
 
     return (
       <ContainerApp>
-        Labefy
+        <h1>Labefy</h1>
         <ContainerCriaPlaylist>
           <input
           placeholder="Nome da Playlist"
@@ -205,22 +209,24 @@ export default class App extends React.Component {
           {playlistComponents}
           
         </ContainerMostraPlaylists>
-        <input
-          placeholder="Nome da Música"
-          value={this.state.songTitle}
-          onChange={this.handleSongTitle}
-          />
+        {this.state.playlistID === "" ? "" : <ContainerCriaMusica>
           <input
-          placeholder="Nome do Artista"
-          value={this.state.songArtist}
-          onChange={this.handleSongArtist}
-          />
-          <input
-          placeholder="URL Embed"
-          value={this.state.songURL}
-          onChange={this.handleSongURL}
-          />
-          <button onClick={() => this.addTrackToPlaylist(this.state.playlistID)}>Adicionar</button>
+            placeholder="Nome da Música"
+            value={this.state.songTitle}
+            onChange={this.handleSongTitle}
+            />
+            <input
+            placeholder="Nome do Artista"
+            value={this.state.songArtist}
+            onChange={this.handleSongArtist}
+            />
+            <input
+            placeholder="URL Embed"
+            value={this.state.songURL}
+            onChange={this.handleSongURL}
+            />
+            <button onClick={() => this.addTrackToPlaylist(this.state.playlistID)}>Adicionar</button>
+          </ContainerCriaMusica>}
         {playlistDetails}
       </ContainerApp>
     );
