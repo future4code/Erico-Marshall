@@ -1,10 +1,26 @@
-import './App.css';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 import MatchScreen from './components/MatchScreen';
 
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+`
+
 const CardContainer = styled.div`
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   img {
     width: 300px;
   }
@@ -101,11 +117,11 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <AppContainer>
       <h1>AstroMatch</h1>
       {renderPage()}
 
-    </div>
+    </AppContainer>
   );
 };
 
