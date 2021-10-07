@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import * as ReactBootStrap from "react-bootstrap";
-import { MatchesContainer } from '../style'; 
+import { MatchesContainer, MatchRow } from '../style'; 
 
 const MatchScreen = (props) => {
 
@@ -48,7 +48,11 @@ const MatchScreen = (props) => {
 
     const allMatches = currentMatches.map(match => {
         return (
-        <p key={match.name}>{match.name}</p>
+            <MatchRow>
+                <img src={match.photo} alt={match.name} />
+                <p key={match.name}>{match.name}</p>
+            </MatchRow>
+
         )
     });
 

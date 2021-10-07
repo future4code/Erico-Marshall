@@ -47,7 +47,21 @@ export const ButtonContainer = styled.div`
 // PÁGINA DOS MATCHES
 
 export const MatchesContainer = styled.div`
+  border: 1px solid black;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  p {
+    align-self: flex-start;
+  }
+`
+export const MatchRow = styled.div`
+  display: flex;
+  img {
+    border: 2px solid white;
+    border-radius: 100%;
+    width: 50px;
+  }
 `
