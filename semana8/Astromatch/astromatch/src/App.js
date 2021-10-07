@@ -1,30 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import styled from "styled-components";
+import { CardContainer, AppContainer, HomeContainer, ButtonContainer } from './style';
 import MatchScreen from './components/MatchScreen';
-
-const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-`
-
-const CardContainer = styled.div`
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  img {
-    width: 300px;
-  }
-`
+import * as ReactBootStrap from "react-bootstrap";
 
 const App = () => {
 
@@ -32,6 +10,7 @@ const App = () => {
   const headers = "application/json"
   const [screenProfile, setScreenProfile] = useState({});
   const [currentPage, setCurrentPage] = useState("start");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
 
@@ -39,17 +18,18 @@ const App = () => {
 
   }, []);
 
-  const getProfileToChoose = () => {
-
-    axios
-    .get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${aluno}/person`, headers)
-    .then(response => {
-    setScreenProfile(response.data.profile);
-    })
-    .catch(error => {
+  const getProfileToChoose = async () => {
+    try {
+      await axios
+      .get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${aluno}/person`, headers)
+      .then(response => {
+      setScreenProfile(response.data.profile);
+      });
+      setLoading(true);
+    } catch(error)  {
       alert("Oh não! Algo deu errado! Reinicie a página por favor!");
       console.log(error);
-    });
+    };
   };
 
   const choosePerson = (choosePerson) => {
@@ -86,17 +66,24 @@ const App = () => {
       case "start":
         if (screenProfile) {
         return (
-          <div>
+          <HomeContainer>
+            <button onClick={() => handleClickSwitch("matchScreen")}>Ir para matches</button>
             <CardContainer>
-              <button onClick={() => handleClickSwitch("matchScreen")}>Ir para matches</button>
-              <p>{screenProfile.name}</p>
-              <img src={screenProfile.photo} alt={screenProfile.name}/>
-              <p>{screenProfile.age} Anos</p>
-              <p>{screenProfile.bio}</p>
+              {loading ?      
+              <div>        
+                <p>{screenProfile.name}</p>
+                <img src={screenProfile.photo} alt={screenProfile.name}/>
+                <p>{screenProfile.age} Anos</p>
+                <p>{screenProfile.bio}</p> 
+              </div> : 
+              <ReactBootStrap.Spinner animation="border" />
+              }
             </CardContainer>
-            <button onClick={handleDislike}>Não Curti</button>
-            <button onClick={handleLike}>Curti</button>
-          </div>
+            <ButtonContainer>
+              <button className="dislikeButton" onClick={handleDislike}>Não Curti</button>
+              <button className="likeButton" onClick={handleLike}>Curti</button>
+            </ButtonContainer>
+          </HomeContainer>
         )
         } else {
           return (
@@ -120,7 +107,6 @@ const App = () => {
     <AppContainer>
       <h1>AstroMatch</h1>
       {renderPage()}
-
     </AppContainer>
   );
 };

@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import styled from "styled-components";
-
+import * as ReactBootStrap from "react-bootstrap";
+import { MatchesContainer } from '../style'; 
 
 const MatchScreen = (props) => {
 
     const usuario = `erico-marshall-maryam`;
     const [currentMatches, setCurrentMatches] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
@@ -16,30 +17,33 @@ const MatchScreen = (props) => {
     
     }, []);
 
-    const getMatches = () => {
-        axios
-        .get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${usuario}/matches`)
-        .then(response => {
-            setCurrentMatches(response.data.matches);
-        })
-        .catch(error => {
+    const getMatches = async () => {
+        try {
+            await axios
+            .get(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${usuario}/matches`)
+            .then(response => {
+                setCurrentMatches(response.data.matches);
+            });
+            setLoading(true);
+        } catch(error) {
             alert("Oh não! Algo deu errado! Reinicie a página por favor!");
             console.log(error);
-        });
+        };
     };
 
-    const clearAllMatches = () => {
-
-        axios
-        .put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${usuario}/clear`)
-        .then(response => {
-          getMatches()
-          props.getProfileToChoose();
-        })
-        .catch(error => {
+    const clearAllMatches = async () => {
+        try {
+            await axios
+            .put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${usuario}/clear`)
+            .then(response => {
+            getMatches()
+            props.getProfileToChoose();
+            });
+            setLoading(true);
+        } catch(error) {
           alert("Oh não! Algo deu errado! Reinicie a página por favor!");
           console.log(error);
-        });
+        };
     };
 
     const allMatches = currentMatches.map(match => {
@@ -50,12 +54,13 @@ const MatchScreen = (props) => {
 
 
     return (
-        <div>
+        <MatchesContainer>
             <h2>Seus Matches</h2>
             <button onClick={() => clearAllMatches()}>Limpar Matches</button>
-            {allMatches}
+            {loading ? 
+            allMatches :<ReactBootStrap.Spinner animation="border" />}
             <button onClick={() => props.handleClickSwitch("start")}>Voltar</button>
-        </div>
+        </MatchesContainer>
     );
 };
 
