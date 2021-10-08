@@ -71,10 +71,10 @@ const App = () => {
             <CardContainer>
               {loading ?      
               <div>        
-                <p>{screenProfile.name}</p>
+                <p><strong>Nome: </strong>{screenProfile.name}</p>
                 <img src={screenProfile.photo} alt={screenProfile.name}/>
-                <p>{screenProfile.age} Anos</p>
-                <p>{screenProfile.bio}</p> 
+                <p><strong>Idade: </strong>{screenProfile.age} Anos</p>
+                <p><strong>Bio:</strong><br />{screenProfile.bio}</p>
               </div> : 
               <ReactBootStrap.Spinner animation="border" />
               }

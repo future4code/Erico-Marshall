@@ -49,8 +49,7 @@ const MatchScreen = (props) => {
     const allMatches = currentMatches.map(match => {
         return (
             <MatchRow>
-                <img src={match.photo} alt={match.name} />
-                <p key={match.name}>{match.name}</p>
+                <p key={match.name}><img src={match.photo} alt={match.name} />{match.name}</p>
             </MatchRow>
 
         )
