@@ -1,50 +1,28 @@
 //Para o usuário escolher entre Área Administrativa e Lista de Viagens
 
-import React, { useState } from "react";
-import AdminHome from "./AdminHome";
-import ListTrips from "./ListTripsPage";
-import Aplication from "./AplicationFromPage";
-import LoginPage from "./LoginPage";
+import React from "react";
+import { useHistory } from "react-router";
+import { PageContainer, HomeButtons } from "./style";
 
 const HomePage = () => {
+    const history = useHistory();
 
-    const [currentPage, setCurrentPage] = useState("start");
-    const [login, setLogin] = useState(false);
-
-    const handleClickSwitch = (page) => {
-        setCurrentPage(page);
+    const goToAdmin = () => {
+        history.push("/admin")
     }
 
-    const renderPage = () => {
-        switch (currentPage) {
-            case "start":
-                return (
-                    <div>
-                        <button onClick={handleClickSwitch("listTrips")}>Ver Viagens</button>
-                        <button onClick={handleClickSwitch("admin")}>Área de Admin</button>
-                    </div>
-                )
-            case "admin":
-                if (login = false) {
-                    return <LoginPage 
-                    setLogin={setLogin}/>
-                } else {
-                    return <AdminHome />
-                }
-            case "listTrips":
-                return <ListTrips />
-            default:
-                return (
-                    <h1>Oops! Algo de errado aconteceu! Recarregue a página por favor!</h1>
-                )
-        }   
+    const goToTrips = () => {
+        history.push("/trips")
     }
-    
+
     return (
-        <div>
+        <PageContainer>
             <h1>LabeX</h1>
-            {renderPage()}
-        </div>
+            <HomeButtons>
+                <button onClick={goToTrips}>Ver Viagens</button>
+                <button onClick={goToAdmin}>Área de Admin</button>
+            </HomeButtons>
+        </PageContainer>
     )
 }
 
