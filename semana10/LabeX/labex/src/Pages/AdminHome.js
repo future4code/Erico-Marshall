@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { PageContainer, TripListContainer } from "./style";
+import { PageContainer, ButtonsContainer, TripListContainer, TripElements } from "./style";
 import { useGetAllTrips } from "../Hooks/GetTrips";
 
 export const useProtectedPage = () => {
@@ -43,8 +43,10 @@ const AdminHome = () => {
     const allTrips = trips && trips.map(trip => {
         return (
             <TripListContainer key={trip.id}>
-                <p><strong>Nome: </strong>{trip.name}</p>
-                <button onClick={() => goToTripDetail(trip.id)}>Detalhes</button>
+                <TripElements>
+                    <p><strong>Nome: </strong>{trip.name}</p>
+                    <button onClick={() => goToTripDetail(trip.id)}>Detalhes</button>
+                </TripElements>
             </TripListContainer>
         )
     })
@@ -52,11 +54,11 @@ const AdminHome = () => {
     return (
             <PageContainer>
                 <h1>Painel Administrativo</h1>
-                <div>
+                <ButtonsContainer>
                     <button onClick={handleClickBack}>Voltar</button>
                     <button onClick={goToCreateTrip}>Criar Viagem</button>
                     <button onClick={logoutUser}>Logout</button>
-                </div>
+                </ButtonsContainer>
                 <h2>Lista Viagens</h2>
                 {allTrips}
             </PageContainer>

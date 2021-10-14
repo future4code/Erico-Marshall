@@ -3,7 +3,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useGetAllTrips } from "../Hooks/GetTrips";
-import { PageContainer, TripListContainer } from "./style";
+import { ButtonsContainer, PageContainer, TripListContainer } from "./style";
 
 const ListTripsPage = () => {
 
@@ -36,10 +36,10 @@ const ListTripsPage = () => {
     return (
         <PageContainer>
             <h1>Lista das Viagens</h1>
-            <div>
+            <ButtonsContainer>
                 <button onClick={handleClickBack}>Voltar</button>
                 <button onClick={handleClickToForm}>Inscrever-se</button>
-            </div>
+            </ButtonsContainer>
             {allTrips}
         </PageContainer>
     )

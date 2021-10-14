@@ -8,9 +8,11 @@ export const PageContainer = styled.div`
     color: white;
 
     button {
-        width: 100px;
+        min-width: 100px;
+        max-width: 200px;
         min-height: 30px;
         max-height: max-content;
+        padding: 10px;
         border-radius: 5px;
         border: none;
         margin: 0 30px;
@@ -31,6 +33,10 @@ export const PageContainer = styled.div`
     }
 `
 
+export const ButtonsContainer = styled.div`
+    display: flex;
+`
+
 
 //Estilo da região dos botões da Home
 export const HomeButtons = styled.div`
@@ -49,7 +55,6 @@ export const TripListContainer = styled.div`
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    /* flex-direction: column; */
     align-items: flex-start;
     background-color: #5D8CA1;
     color: white;
@@ -57,6 +62,17 @@ export const TripListContainer = styled.div`
     p {
         margin: 10px 0;
     }
+`
+
+export const TripElements = styled.div`
+    display: flex;
+    vertical-align: middle;
+    justify-content: space-between;
+
+    button {
+        margin-bottom: 0;
+    }
+
 `
 
 //Estilo dos Inputs de Login
