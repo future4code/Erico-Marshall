@@ -1,6 +1,6 @@
 //Para o administrador ver a lista de viagens e poder deletá-las ou acessar o detalhe de cada uma delas
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { PageContainer, ButtonsContainer, TripListContainer, TripElements } from "./style";
 import { useGetAllTrips } from "../Hooks/GetTrips";
@@ -19,9 +19,8 @@ export const useProtectedPage = () => {
 const AdminHome = () => {
     useProtectedPage();
 
-    const aluno = "erico-marshall-maryam";
     const history = useHistory();
-    const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/${aluno}/trips`);
+    const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips`);
 
     const handleClickBack = () => {
         history.push("/");

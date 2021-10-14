@@ -1,9 +1,7 @@
 //Formulário para o administrador criar uma nova viagem
-
 import React from "react";
 import { useHistory } from "react-router";
 import { PageContainer } from "./style";
-import { useEffect } from "react";
 import { useProtectedPage } from "./AdminHome";
 
 const CreateTripPage = () => {

@@ -22,7 +22,7 @@ const ErrorPage = () => {
          allowFullScreen>
         </iframe>
         <br />
-        <button onClick={handleClickBack}>Voltar</button>
+        <button onClick={handleClickBack}>Voltar à Página Inicial</button>
       </PageContainer>
   );
 }

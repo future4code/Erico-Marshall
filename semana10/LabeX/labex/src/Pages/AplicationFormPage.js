@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useGetAllTrips } from "../Hooks/GetTrips";
-import { PageContainer, FormContainer, FormText } from "./style";
+import { PageContainer, FormContainer } from "./style";
 import { useHistory } from "react-router";
 
 const AplicationFormPage = () => {
@@ -103,7 +103,6 @@ const AplicationFormPage = () => {
                     onChange={handleFormAge}
                     />
                     <input
-                    className="FormText"
                     placeholder="Texto de Candidatura"
                     required
                     type="text"

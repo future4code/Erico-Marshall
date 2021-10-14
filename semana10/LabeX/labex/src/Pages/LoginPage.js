@@ -1,8 +1,6 @@
 //Para fazermos login como administrador
-
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { useEffect } from "react/cjs/react.development";
 import { PageContainer, LoginContainer } from "./style";
 import axios from "axios";
 

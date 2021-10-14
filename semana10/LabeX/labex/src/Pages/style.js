@@ -62,6 +62,10 @@ export const TripListContainer = styled.div`
     p {
         margin: 10px 0;
     }
+
+    h2 {
+        align-self: center;
+    }
 `
 
 export const TripElements = styled.div`
@@ -74,6 +78,7 @@ export const TripElements = styled.div`
     }
 
 `
+
 
 //Estilo dos Inputs de Login
 export const LoginContainer = styled.div`

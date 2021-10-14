@@ -33,7 +33,7 @@ const App = () => {
       <Route exact path={"/trips/aplication"}>
           <AplicationForm />
       </Route>
-      <Route exact path={"/admin/trips/:id"}>
+      <Route exact path={"/admin/trip/:id"}>
           <TripDetail />
       </Route>
       <Route>
