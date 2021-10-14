@@ -34,7 +34,8 @@ const LoginPage = () => {
             await axios
             .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/${aluno}/login`, body) 
             .then(response => {
-                console.log("deu certo:", response.data);
+                localStorage.setItem('token', response.data.token);
+                history.push('/admin')
             });
         } catch(error) {
             console.log("deu erro:", error.response);

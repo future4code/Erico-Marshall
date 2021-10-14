@@ -49,9 +49,14 @@ export const TripListContainer = styled.div`
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-start;
     background-color: #5D8CA1;
     color: white;
+
+    p {
+        margin: 10px 0;
+    }
 `
 
 //Estilo dos Inputs de Login
@@ -60,7 +65,56 @@ export const LoginContainer = styled.div`
     height: 61.7vh;
 
     input {
+        font-size: 16px;
+        width: 200px;
         margin: 0 20px;
-        
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+    }
+`
+
+//Estilo do Formulário
+export const FormContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 62.15vh;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        margin: 40px 0;
+
+        input {
+        height: 30px;
+        border: 0;
+        padding: 0.5rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 16px;
+
+            & + input {
+                margin-top: 20px;
+            }
+        }
+
+        select {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: 40px;
+        border: 0;
+        padding: 0.5rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 16px;
+        }
+
+        button {
+            align-self: center;
+            margin-top: 20px;
+        }
+
     }
 `

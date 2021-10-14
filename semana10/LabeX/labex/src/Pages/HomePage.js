@@ -8,12 +8,12 @@ const HomePage = () => {
     const history = useHistory();
 
     const goToAdmin = () => {
-        history.push("/admin")
-    }
+        history.push("/admin");
+    };
 
     const goToTrips = () => {
-        history.push("/trips")
-    }
+        history.push("/trips");
+    };
 
     return (
         <PageContainer>

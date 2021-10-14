@@ -1,7 +1,14 @@
 import React from "react";
 import { PageContainer } from "./style";
+import { useHistory } from "react-router";
 
 const ErrorPage = () => {
+  const history = useHistory();
+
+  const handleClickBack = () => {
+    history.push("/");
+  };
+
   return (
       <PageContainer>
         <h1>Oops! Algo deu errado!</h1>
@@ -14,6 +21,8 @@ const ErrorPage = () => {
          class="giphy-embed" 
          allowFullScreen>
         </iframe>
+        <br />
+        <button onClick={handleClickBack}>Voltar</button>
       </PageContainer>
   );
 }

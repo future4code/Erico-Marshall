@@ -18,22 +18,22 @@ const App = () => {
       <Route exact path={"/"}>
         <HomePage />
       </Route>
-      <Route path={"/login"}>
+      <Route exact path={"/login"}>
           <LoginPage />
       </Route>
-      <Route path={"/admin"}>
+      <Route exact path={"/admin"}>
           <AdminHome />
       </Route>
-      <Route path={"/trips"}>
+      <Route exact path={"/trips"}>
           <ListTrips />
       </Route>
-      <Route path={"/admin/create"}>
+      <Route exact path={"/admin/create"}>
           <CreateTrip />
       </Route>
-      <Route path={"/trips/aplication"}>
+      <Route exact path={"/trips/aplication"}>
           <AplicationForm />
       </Route>
-      <Route path={"/admin/trips/:id"}>
+      <Route exact path={"/admin/trips/:id"}>
           <TripDetail />
       </Route>
       <Route>
