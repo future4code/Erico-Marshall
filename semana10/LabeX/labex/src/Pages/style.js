@@ -5,7 +5,6 @@ export const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #81C3E0;
     color: white;
 
     button {
@@ -53,4 +52,15 @@ export const TripListContainer = styled.div`
     align-items: flex-start;
     background-color: #5D8CA1;
     color: white;
+`
+
+//Estilo dos Inputs de Login
+export const LoginContainer = styled.div`
+    margin-top: 30vh;
+    height: 61.7vh;
+
+    input {
+        margin: 0 20px;
+        
+    }
 `
