@@ -14,7 +14,7 @@ const TripDetailsPage = () => {
 
     const [trip] = useGetTripDetail(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trip/${params.id}`)
 
-    const [approvedCandidates, setApprovedCandidates] = useState(["Raiê"])
+    const [approvedCandidates, setApprovedCandidates] = useState([])
 
     const handleClickBack = () => {
         history.goBack();

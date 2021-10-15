@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { PageContainer, ButtonsContainer, TripListContainer, TripElements } from "./style";
 import { useGetAllTrips } from "../Hooks/GetTrips";
-import { useDeleteTrips } from "../Hooks/DeleteTrip";
+import axios from "axios";
 
 
 export const useProtectedPage = () => {
@@ -24,8 +24,6 @@ const AdminHome = () => {
     const history = useHistory();
     const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips`);
 
-    const deleteTrip = useDeleteTrips()
-
     const handleClickBack = () => {
         history.push("/");
     };
@@ -42,6 +40,25 @@ const AdminHome = () => {
         window.localStorage.clear();
         history.push('/');
     }
+
+    const deleteTrip = (id) => {
+
+        const token = localStorage.getItem('token');
+        axios
+        .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips/${id}`, {
+            headers: {
+                auth: token
+            }
+        })
+        .then((res) => {
+            console.log(res.data)
+            
+        })
+        .catch((err) => {
+            console.log(err.message);
+        });
+    
+    };
     
     const allTrips = trips && trips.map(trip => {
         return (

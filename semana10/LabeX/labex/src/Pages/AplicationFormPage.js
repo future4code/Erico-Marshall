@@ -1,41 +1,41 @@
 //Para o usuário se candidatar à viagens, página que vai ter o formulário de inscrição
-import React, { useState } from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import { useGetAllTrips } from "../Hooks/GetTrips";
 import { PageContainer, FormContainer } from "./style";
 import { useHistory } from "react-router";
+import useForm from "../Hooks/useForm";
 
 const AplicationFormPage = () => {
+    const { form, onChangeInput, cleanFields } = useForm({name: "", age: "", applicationText: "", profession: "", country: ""})
 
     const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips`);
 
     const history = useHistory();
 
+    const [tripId, setTripId] = useState("");
+
     const handleClickBack = () => {
         history.push("/trips");
     };
 
-    const [form, setForm] = useState({name: "", age: "", applicationText: "", profession: "", country: ""});
+    const handleTripId = (event) => {
+       setTripId(event.target.value);
+    };
 
-    const onChangeInput = (event) => {
-        const {name, value} = event.target;
-        setForm({...form, [name]: value})
-    }
-
-    const applyToTrip = (event, id) => {
+    const applyToTrip = (event) => {
         event.preventDefault();
         axios
-        .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips/${id}/apply`, form)
+        .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips/${tripId}/apply`, form)
         .then(response => {
-            console.log("msg da requisição: ", response.data)
-            console.log("id da viagem: ", id);
             alert("Formulário enviado com sucesso!");
+            cleanFields();
         })
         .catch(error => {
             alert("Não foi possível enviar o seu formulário");
-            console.log(error);
+            console.log(error.message);
         })
-    }
+    };
 
     const tripList = trips && trips.map(trip => {
         return (
@@ -50,8 +50,9 @@ const AplicationFormPage = () => {
         <h1>Inscreva-se para uma viagem</h1>
         <button onClick={handleClickBack}>Voltar</button>
             <FormContainer>
-                <form onSubmit={() => applyToTrip(trips.id && trips.id)}>
+                <form onSubmit={applyToTrip}>
                     <select
+                    onChange={handleTripId}
                     name="trips">
                         <option>Escolha uma Viagem</option>
                         {tripList}    
