@@ -12,9 +12,9 @@ const TripDetailsPage = () => {
     const params = useParams();
     const history = useHistory();
 
-    const [trip] = useGetTripDetail(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trip/${params.id}`)
+    const [trip, getTripDetail] = useGetTripDetail(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trip/${params.id}`)
 
-    const [approvedCandidates, setApprovedCandidates] = useState([])
+    const [approvedCandidates, setApprovedCandidates] = useState([]);
 
     const handleClickBack = () => {
         history.goBack();
@@ -33,7 +33,9 @@ const TripDetailsPage = () => {
         .then(res => {
             setApprovedCandidates(...approvedCandidates, candidateName);
             alert("Candidato aprovado!");
+            getTripDetail();
             console.log(res.data);
+            console.log(approvedCandidates)
         })
         .catch(error => {
             console.log("deu erro! ",error.message);
@@ -51,13 +53,14 @@ const TripDetailsPage = () => {
             )
     })
 
-    const approvedCandidatesList = approvedCandidates.map(candidate => {
-        return (
-            <TripElements key={candidate}>
-                <p><strong>{candidate}</strong></p>
-            </TripElements>
-        )
-    })
+    // const approvedCandidatesList = approvedCandidates && 
+    //     approvedCandidates.map(candidate => {
+    //         return (
+    //             <TripElements key={candidate}>
+    //                 <p><strong>{candidate}</strong></p>
+    //             </TripElements>
+    //         )
+    //     })
 
     return (
         <PageContainer>
@@ -72,8 +75,8 @@ const TripDetailsPage = () => {
             {trip.date && <p><strong>Data: </strong>{trip.date}</p>}
             <h2>Candidatos Pendentes</h2>
             {pendentCandidates}
-            <h2>Candidatos Aprovados</h2>
-            {approvedCandidatesList}
+            {/* <h2>Candidatos Aprovados</h2> */}
+            
             </TripListContainer>
         </PageContainer>
     )

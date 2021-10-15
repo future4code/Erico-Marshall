@@ -4,7 +4,7 @@ import axios from 'axios';
 const useGetTripDetail = (url) => {
     const [tripDetail, setTripDetail] = useState({});
 
-    useEffect(() => {
+    const getTripDetail = () => {
         const token = localStorage.getItem('token');
         axios
         .get(url,{
@@ -18,8 +18,11 @@ const useGetTripDetail = (url) => {
         .catch((error) => {
             console.log("Deu erro: ", error.response);
         });
+    }
+    useEffect(() => {
+       getTripDetail();
     }, [url]);
-    return [tripDetail];
+    return [tripDetail, getTripDetail];
 }
 
 export default useGetTripDetail;

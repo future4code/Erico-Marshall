@@ -3,9 +3,8 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { PageContainer, ButtonsContainer, TripListContainer, TripElements } from "./style";
-import { useGetAllTrips } from "../Hooks/GetTrips";
 import axios from "axios";
-
+import { useGetAllTrips } from "../Hooks/GetTrips";
 
 export const useProtectedPage = () => {
     const history = useHistory();
@@ -19,10 +18,10 @@ export const useProtectedPage = () => {
 };
 
 const AdminHome = () => {
+
     useProtectedPage();
 
     const history = useHistory();
-    const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips`);
 
     const handleClickBack = () => {
         history.push("/");
@@ -30,34 +29,34 @@ const AdminHome = () => {
 
     const goToCreateTrip = () => {
         history.push("/admin/create");
-    }
+    };
 
     const goToTripDetail = (tripId) => {
-        history.push(`/admin/trip/${tripId}`)
-    }
+        history.push(`/admin/trip/${tripId}`);
+    };
 
     const logoutUser = () => {
         window.localStorage.clear();
         history.push('/');
-    }
+    };
+
+    const [trips, getAllTrips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips`);
 
     const deleteTrip = (id) => {
-
         const token = localStorage.getItem('token');
         axios
-        .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/trips/${id}`, {
+        .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips/${id}`, {
             headers: {
                 auth: token
             }
         })
         .then((res) => {
-            console.log(res.data)
-            
+            getAllTrips();
+            console.log(res.data);
         })
         .catch((err) => {
             console.log(err.message);
         });
-    
     };
     
     const allTrips = trips && trips.map(trip => {
@@ -84,6 +83,6 @@ const AdminHome = () => {
                 {allTrips}
             </PageContainer>
     ) 
-}
+};
 
 export default AdminHome;

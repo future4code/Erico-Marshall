@@ -4,15 +4,18 @@ import axios from 'axios';
 export const useGetAllTrips = (url) => {
     const [trips, setTrips] = useState([]);
   
-    useEffect(() => {
+    const getAllTrips = () => {
       axios
-        .get(url)
-        .then((res) => {
-          setTrips(res.data.trips);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+      .get(url)
+      .then((res) => {
+        setTrips(res.data.trips);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    };
+    useEffect(() => {
+      getAllTrips();
     }, [url]);
-    return [trips];
+    return [trips, getAllTrips];
 };
