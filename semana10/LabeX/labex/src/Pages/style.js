@@ -21,10 +21,11 @@ export const PageContainer = styled.div`
         font-weight: bold;
         background-color: #385561;
         color: white;
+        opacity: 0.8;
     }
 
     button:hover {
-        background-color: #5D8CA1;
+        opacity: 1;
         cursor: pointer;
     }
 

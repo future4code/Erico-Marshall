@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { PageContainer, ButtonsContainer, TripListContainer, TripElements } from "./style";
 import { useGetAllTrips } from "../Hooks/GetTrips";
+import { useDeleteTrips } from "../Hooks/DeleteTrip";
+
 
 export const useProtectedPage = () => {
     const history = useHistory();
@@ -22,6 +24,8 @@ const AdminHome = () => {
     const history = useHistory();
     const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips`);
 
+    const deleteTrip = useDeleteTrips()
+
     const handleClickBack = () => {
         history.push("/");
     };
@@ -38,13 +42,14 @@ const AdminHome = () => {
         window.localStorage.clear();
         history.push('/');
     }
-
+    
     const allTrips = trips && trips.map(trip => {
         return (
             <TripListContainer key={trip.id}>
                 <TripElements>
                     <p><strong>Nome: </strong>{trip.name}</p>
                     <button onClick={() => goToTripDetail(trip.id)}>Detalhes</button>
+                    <button onClick={() => deleteTrip(trip.id)}>Deletar</button>
                 </TripElements>
             </TripListContainer>
         )

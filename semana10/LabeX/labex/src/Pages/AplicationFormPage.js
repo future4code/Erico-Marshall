@@ -12,53 +12,24 @@ const AplicationFormPage = () => {
     const history = useHistory();
 
     const handleClickBack = () => {
-        history.goBack();
+        history.push("/trips");
     };
 
-    const [formName, setFormName] = useState("");
-    const [formAge, setFormAge] = useState("");
-    const [formText, setFormText] = useState("");
-    const [formJob, setFormJob] = useState("");
-    const [formCountry, setFormCountry] = useState("");
+    const [form, setForm] = useState({name: "", age: "", applicationText: "", profession: "", country: ""});
 
-    const handleFormName = (event) => {
-        setFormName(event.target.value);
-    };
+    const onChangeInput = (event) => {
+        const {name, value} = event.target;
+        setForm({...form, [name]: value})
+    }
 
-    const handleFormAge = (event) => {
-        setFormAge(event.target.value);
-    };
-
-    const handleFormText = (event) => {
-        setFormText(event.target.value);
-    };
-
-    const handleFormJob = (event) => {
-        setFormJob(event.target.value);
-    };
-
-    const handleFormCountry = (event) => {
-        setFormCountry(event.target.value);
-    };
-
-    const applyToTrip = () => {
-        const body = {
-            name: formName,
-            age: formAge,
-            aplicationText: formText,
-            profession: formJob,
-            country: formCountry
-        }
+    const applyToTrip = (event, id) => {
+        event.preventDefault();
         axios
-        .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips/:id/apply`, body)
+        .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips/${id}/apply`, form)
         .then(response => {
-            setFormName("");
-            setFormAge("");
-            setFormText("");
-            setFormJob("");
-            setFormCountry("");
+            console.log("msg da requisição: ", response.data)
+            console.log("id da viagem: ", id);
             alert("Formulário enviado com sucesso!");
-            return response;
         })
         .catch(error => {
             alert("Não foi possível enviar o seu formulário");
@@ -79,51 +50,54 @@ const AplicationFormPage = () => {
         <h1>Inscreva-se para uma viagem</h1>
         <button onClick={handleClickBack}>Voltar</button>
             <FormContainer>
-                <form onSubmit={applyToTrip}>
+                <form onSubmit={() => applyToTrip(trips.id && trips.id)}>
                     <select
-                    name="trips"
-                    >
+                    name="trips">
                         <option>Escolha uma Viagem</option>
-                        <option>Lista das outras viagens</option>
                         {tripList}    
                     </select>
                     <input
+                    name="name"
                     required
                     type="text"
                     placeholder="Nome"
-                    value={formName}
-                    onChange={handleFormName}
+                    value={form.name}
+                    onChange={onChangeInput}
                     />
                     <input
+                    name="age"
                     required
                     type="number"
                     min="18"
                     placeholder="Idade"
-                    value={formAge}
-                    onChange={handleFormAge}
+                    value={form.age}
+                    onChange={onChangeInput}
                     />
                     <input
+                    name="applicationText"
                     placeholder="Texto de Candidatura"
                     required
                     type="text"
-                    value={formText}
-                    onChange={handleFormText}
+                    value={form.applicationText}
+                    onChange={onChangeInput}
                     />
                     <input
+                    name="profession"
                     placeholder="Profissão"
                     required
                     type="text"
-                    value={formJob}
-                    onChange={handleFormJob}
+                    value={form.profession}
+                    onChange={onChangeInput}
                     />
                     <input
+                    name="country"
                     placeholder="País"
                     required
                     type="text"
-                    value={formCountry}
-                    onChange={handleFormCountry}
+                    value={form.country}
+                    onChange={onChangeInput}
                     />
-                    <button type="submit">Enviar</button>
+                    <button>Enviar</button>
                 </form>
             </FormContainer>
         </PageContainer>

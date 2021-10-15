@@ -7,13 +7,12 @@ import { ButtonsContainer, PageContainer, TripListContainer } from "./style";
 
 const ListTripsPage = () => {
 
-    const aluno = "erico-marshall-maryam";
-    const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/${aluno}/trips`);
+    const [trips] = useGetAllTrips(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips`);
 
     const history = useHistory();
 
     const handleClickBack = () => {
-        history.goBack();
+        history.push("/");
     };
 
     const handleClickToForm = () => {

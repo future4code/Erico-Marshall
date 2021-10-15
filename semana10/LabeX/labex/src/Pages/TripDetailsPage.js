@@ -1,5 +1,6 @@
 // Para o administrador ver o detalhe de uma viagem específica, bem como os candidatos que aplicaram para ela
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useHistory, useParams } from "react-router";
 import useGetTripDetail from "../Hooks/GetTripDetail";
 import { useProtectedPage } from "./AdminHome";
@@ -12,20 +13,52 @@ const TripDetailsPage = () => {
     const history = useHistory();
 
     const [trip] = useGetTripDetail(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trip/${params.id}`)
-    
+
+    const [approvedCandidates, setApprovedCandidates] = useState(["Raiê"])
+
     const handleClickBack = () => {
         history.goBack();
     };
 
-    const pendentCandidates = trip.candidates.map(candidate => {
+    const decideCandidate = (tripId, candidateId, candidateName) => {
+        const token = localStorage.getItem('token');
+        const body = {
+            approve: true
+        }
+        axios
+        .put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/erico-marshall-maryam/trips/${tripId}/candidates/${candidateId}/decide`,
+        body, {headers: {
+            "Content-Type": "application/json",
+            auth: token}})
+        .then(res => {
+            setApprovedCandidates(...approvedCandidates, candidateName);
+            alert("Candidato aprovado!");
+            console.log(res.data);
+        })
+        .catch(error => {
+            console.log("deu erro! ",error.message);
+        })
+    }
+
+    const pendentCandidates = trip.candidates && 
+        trip.candidates.map(candidate => {
+            return (
+                <TripElements key={candidate.id}>
+                    <p><strong>{candidate.name}</strong></p>
+                    <p>{candidate.applicationText}</p>
+                    <button onClick={() => decideCandidate(trip.id, candidate.id, candidate.name)}>Aceitar</button>
+                </TripElements>
+            )
+    })
+
+    const approvedCandidatesList = approvedCandidates.map(candidate => {
         return (
-            <TripElements>
-                <p>{candidate.name}</p>
-                {/* <button>Aprovar</button> */}
+            <TripElements key={candidate}>
+                <p><strong>{candidate}</strong></p>
             </TripElements>
         )
     })
-    
+
     return (
         <PageContainer>
             <h1>Detalhes da Viagem</h1>
@@ -40,6 +73,7 @@ const TripDetailsPage = () => {
             <h2>Candidatos Pendentes</h2>
             {pendentCandidates}
             <h2>Candidatos Aprovados</h2>
+            {approvedCandidatesList}
             </TripListContainer>
         </PageContainer>
     )
