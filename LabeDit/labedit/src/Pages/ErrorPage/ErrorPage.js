@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
+import { ErrorPageContainer } from "./styled";
 
 const ErrorPage = () => {
   const history = useHistory();
@@ -9,7 +10,7 @@ const ErrorPage = () => {
   };
 
   return (
-      <div>
+      <ErrorPageContainer>
         <h1>Oops! Algo deu errado!</h1>
         <iframe
          title="errorGif"
@@ -22,7 +23,7 @@ const ErrorPage = () => {
         </iframe>
         <br />
         <button onClick={handleClickBack}>Voltar à Página Inicial</button>
-      </div>
+      </ErrorPageContainer>
   );
 }
 
