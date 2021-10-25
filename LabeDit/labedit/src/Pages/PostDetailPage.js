@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router";
+import useProtectedPage from "../Hooks/useProtectedPage";
 
 const PostDetail = () => {
-
+    useProtectedPage();
     return (
         <div>
             <h1>Detalhes do Post</h1>

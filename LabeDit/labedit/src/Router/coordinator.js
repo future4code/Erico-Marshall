@@ -9,3 +9,7 @@ export const goToFeed = (history) => {
 export const goToPostDetail = (history, id) => {
     history.push(`/post/${id}`);
 };
+
+export const goToSignUp = (history) => {
+    history.push("/cadastro");
+}
