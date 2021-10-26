@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import Login from "../Pages/LoginPage/LoginPage";
 import SignUp from "../Pages/SignUpPage/SignUpPage";
-import Feed from "../Pages/FeedPage";
+import Feed from "../Pages/FeedPage/FeedPage";
 import Post from "../Pages/PostDetailPage";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 

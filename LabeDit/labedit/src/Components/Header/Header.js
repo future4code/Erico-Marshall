@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import { StyledToolbar, LogoImage } from './styled';
 import Button from '@material-ui/core/Button';
-import { goToFeed, goToLogin } from "../../Router/coordinator"
+import { goToFeed, goToLogin } from "../../Routes/coordinator"
 import { useHistory } from 'react-router-dom';
 import logo from "../../Assets/pintoBoni.png"
 

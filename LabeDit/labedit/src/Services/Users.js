@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../Constants/urls";
-import { goToFeed } from "../Router/coordinator";
+import { goToFeed } from "../Routes/coordinator";
 
 export const login = (body, clearFields, history, setRightButtonText) => {
     axios

@@ -4,7 +4,7 @@ import logo from "../../Assets/pintoBoni.png";
 import Button from "@material-ui/core/Button"
 import LoginForm from "./LoginForm";
 import { useHistory } from "react-router";
-import { goToSignUp } from "../../Router/coordinator";
+import { goToSignUp } from "../../Routes/coordinator";
 import useUnprotectedPage from "../../Hooks/useUnprotectedPage";
 
 const LoginPage = ({setRightButtonText}) => {
