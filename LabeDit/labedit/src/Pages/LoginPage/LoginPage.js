@@ -1,5 +1,5 @@
 import React from "react";
-import { LoginPageContainer, LogoImage, InputsContainer, SignUpButtonContainer } from "./styled";
+import { LoginPageContainer, LogoImage, SignUpButtonContainer } from "./styled";
 import logo from "../../Assets/pintoBoni.png";
 import Button from "@material-ui/core/Button"
 import LoginForm from "./LoginForm";

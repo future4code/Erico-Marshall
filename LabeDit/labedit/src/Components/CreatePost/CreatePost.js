@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import useForm from "../../Hooks/useForm";
 import { sendPost } from "../../Services/Posts";
 import { InputsContainer } from "./styled";
-import { useHistory } from "react-router";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 const CreatePost = () => {
     const [form, onChangeInput, clearFields] = useForm({title: "", body: ""});
-    const history = useHistory();
 
     const onSubmitForm = (event) => {
         event.preventDefault();
-        sendPost(form, clearFields, history);
+        sendPost(form, clearFields);
     }
 
     return (
