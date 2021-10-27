@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import useRequestData from "../Hooks/useRequestData";
 import { BASE_URL } from "../Constants/urls";
 import { CommentCardContainer, CommentListContainer, TittleContainer } from "./styled";
+import CreateComment from "../Components/CreateComment/CreateComment";
+
 
 const PostDetail = () => {
     useProtectedPage();
@@ -28,7 +30,7 @@ const PostDetail = () => {
     const postComments = comments.map((comment) => {
         return (
         <CommentCardContainer key={comment.id}>
-            <p>{comment.body}</p>
+            <p>💬 {comment.body}</p>
         </CommentCardContainer>
         )
     })
@@ -36,6 +38,9 @@ const PostDetail = () => {
     return (
         <CommentListContainer>
             {postTittle}
+            <CreateComment 
+            postId={params.id}/>
+            <h2>Comentários:</h2>
             {postComments}
         </CommentListContainer>
     )

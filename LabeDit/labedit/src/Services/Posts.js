@@ -13,7 +13,7 @@ export const sendPost = (body, clearFields) => {
         }})
     .then((response) => {
         clearFields();
-        alert(`Post Enviado com sucesso!`);
+        alert(`Post enviado com sucesso!`);
         refreshPage();
     })
     .catch((error) => {

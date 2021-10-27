@@ -15,7 +15,14 @@ export const CommentListContainer = styled.div`
 `
 
 export const CommentCardContainer = styled.div`
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    width: 50vw;
+    margin-right: 20px;
+    margin-left: 20px;
 
+    p {
+        margin-bottom: 2px;
+    }
 `
 
 export const TittleContainer = styled.div`
