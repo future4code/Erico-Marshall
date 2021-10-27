@@ -13,7 +13,7 @@ export const PostCardContainer = styled.div`
     border-radius: 5px;
     margin-bottom: 20px;
     width: 50vw;
-    height: 130px;
+    height: fit-content;
     max-height: 400px;
     cursor: pointer;
 `
