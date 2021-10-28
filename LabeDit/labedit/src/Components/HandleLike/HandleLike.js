@@ -44,8 +44,8 @@ const HandleLikeBar = ({postId}) => {
 
     return (
         <LikeContainer>
-            <button onClick={() => handleLikeButton(postId)}><img src={likeIcon}></img></button>
-            <button onClick={() => handleDislikeButton(postId)}><img src={dislikeIcon}></img></button>
+            <button onClick={() => handleLikeButton(postId)}><img src={likeIcon} alt="like icon"></img></button>
+            <button onClick={() => handleDislikeButton(postId)}><img src={dislikeIcon} alt="dislike icon"></img></button>
         </LikeContainer>
     );
 };

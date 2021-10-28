@@ -5,10 +5,9 @@ export const LikeContainer = styled.div`
     width: 40%;
 
     button {
-        margin-right: 20px;
+        margin-right: 12px;
         background-color: white;
         border: none;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     }
 
     button:hover {
