@@ -6,6 +6,7 @@ import { PostCardContainer, PostListContainer, PostBarContainer } from "./styled
 import { goToPostDetail } from "../../Routes/coordinator";
 import { useHistory } from "react-router";
 import CreatePost from "../../Components/CreatePost/CreatePost";
+import HandleLikeBar from "../../Components/HandleLike/HandleLike";
 
 const Feed = () => {
     useProtectedPage();
@@ -24,6 +25,8 @@ const Feed = () => {
             <PostCardContainer onClick={() => onClickPost(post.id, post.title)} key={post.id}>
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
+                <HandleLikeBar 
+                postId={post.id}/>
                 <PostBarContainer>
                     <p>Pintadas: {post.voteSum}</p>
                     <p>Comentários: {post.commentCount}</p>

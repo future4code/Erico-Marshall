@@ -5,6 +5,7 @@ import useRequestData from "../Hooks/useRequestData";
 import { BASE_URL } from "../Constants/urls";
 import { CommentCardContainer, CommentListContainer, TittleContainer } from "./styled";
 import CreateComment from "../Components/CreateComment/CreateComment";
+import HandleLikeBar from "../Components/HandleLike/HandleLike";
 
 
 const PostDetail = () => {
@@ -39,6 +40,8 @@ const PostDetail = () => {
         <CommentListContainer>
             {postTittle}
             <CreateComment 
+            postId={params.id}/>
+            <HandleLikeBar 
             postId={params.id}/>
             <h2>Comentários:</h2>
             {postComments}
