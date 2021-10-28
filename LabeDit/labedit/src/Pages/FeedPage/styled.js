@@ -15,11 +15,40 @@ export const PostCardContainer = styled.div`
     width: 50vw;
     height: fit-content;
     max-height: 400px;
-    cursor: pointer;
+
+    h2 {
+        cursor: pointer;
+    }
+
+    h2:hover {
+        text-decoration: underline;
+    }
 `
 
 export const PostBarContainer = styled.div`
     display: flex;
     justify-content: space-between;
     color: #76647A;
+`
+
+export const PageSelectContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 5vh;
+
+    button {
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+        font-family: "Roboto";
+        background-color: #76647A;
+        color: white;
+        opacity: 0.8;
+    }
+
+    button:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
 `

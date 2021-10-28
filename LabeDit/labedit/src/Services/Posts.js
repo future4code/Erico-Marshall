@@ -4,7 +4,7 @@ import { BASE_URL } from "../Constants/urls";
 export const sendPost = (body, clearFields) => {
     const refreshPage = () => {
         window.location.reload()
-    }
+    };
 
     axios
     .post(`${BASE_URL}/posts`, body, {

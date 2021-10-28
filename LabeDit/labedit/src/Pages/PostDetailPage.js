@@ -10,15 +10,19 @@ import axios from "axios";
 import { LikeContainer } from "../Components/HandleLike/styled";
 import likeIcon from "../Assets/likeIcon.png";
 import dislikeIcon from "../Assets/dislikeIcon.png";
+import dismissLike from "../Assets/dismissLike.png";
 
 
 const PostDetail = () => {
     useProtectedPage();
     const params = useParams();
 
+    const refreshPage = () => {
+        window.location.reload()
+    };
+
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(10);
-    const posts = useRequestData([], `${BASE_URL}/posts/?page=${page}&size=${size}`);
+    const posts = useRequestData([], `${BASE_URL}/posts/?page=${page}&size=10`);
     const comments = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`);
 
     const header = {
@@ -34,47 +38,49 @@ const PostDetail = () => {
                     <TittleContainer key={post.id}>
                         <h1>{post.title}</h1>
                         <h3>{post.body}</h3>
+                        <p>Pintadas: {post.voteSum}</p>
                     </TittleContainer>
             )
         }
     })
 
-    const handleLikeComment = (commentId) => {
+    const handleLikeComment = (commentId, like) => {
         const body = {
-            direction: 1,
+            direction: like,
         }
         axios
         .post(`${BASE_URL}/comments/${commentId}/votes`, body, header)
         .then((response) => {
             console.log(response);
+            refreshPage();
         })
         .catch((error) => {
             console.log(error.message);
         });
-    }
+    };
 
-    const handleDislikeComment = (commentId) => {
-        const body = {
-            direction: -1,
-        }
+    const handleDismissLikeButton = (commentId) => {
         axios
-        .post(`${BASE_URL}/comments/${commentId}/votes`, body, header)
+        .delete(`${BASE_URL}/comments/${commentId}/votes`, header)
         .then((response) => {
             console.log(response);
+            refreshPage();
         })
         .catch((error) => {
             console.log(error.message);
         });
-    }
+    };
 
     const postComments = comments.map((comment) => {
         return (
         <CommentCardContainer key={comment.id}>
+            <p><strong>Usuário {comment.userId}</strong></p>
             <p>💬 {comment.body}</p>
             <p>Pintadas: {comment.voteSum}</p>
             <LikeContainer>
-            <button onClick={() => handleLikeComment(comment.id)}><img src={likeIcon} alt="like icon"></img></button>
-            <button onClick={() => handleDislikeComment(comment.id)}><img src={dislikeIcon} alt="dislike icon"></img></button>
+            <button onClick={() => handleLikeComment(comment.id, 1)}><img src={likeIcon} alt="like icon"></img></button>
+            <button onClick={() => handleDismissLikeButton(comment.id)}><img src={dismissLike} alt="dismiss like icon"></img></button>
+            <button onClick={() => handleLikeComment(comment.id, -1)}><img src={dislikeIcon} alt="dislike icon"></img></button>
             </LikeContainer>
         </CommentCardContainer>
         )
@@ -90,7 +96,7 @@ const PostDetail = () => {
             <h2>Comentários:</h2>
             {postComments}
         </CommentListContainer>
-    )
-}
+    );
+};
 
 export default PostDetail;

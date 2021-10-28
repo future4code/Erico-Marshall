@@ -11,7 +11,11 @@ export const CommentListContainer = styled.div`
     margin: 20px auto 20px auto;
     width: 50vw;
     height: fit-content;
-    max-height: 80vh;
+
+    h2 {
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+        width: 100%;
+    }
 `
 
 export const CommentCardContainer = styled.div`
