@@ -1,7 +1,7 @@
 import express, {Express} from 'express'
 import cors from 'cors'
 import { AddressInfo } from 'net';
-import { Costumer, User, Client, Seller } from './types';
+import { Costumer, User, Client, Seller, ClientManager } from './types';
 
 const app: Express = express();
 
@@ -67,3 +67,16 @@ const ines: Seller = new Seller("2", "ines@email.com", "Inês", "1237")
 ines.setSalesQuantity(4)
 console.log(ines.calculateTotalSalary())
 //foi impresso o valor total após incluir um novo valor para sales Quantity
+
+//desafios Polimorfismo
+
+// const clientManager = new ClientManager()
+
+// const residentialClient = new ResidentialClient() 
+// clientManager.registerClient(residentialClient)
+
+// const commercialClient = new CommercialClient() 
+// clientManager.registerClient(commercialClient)
+
+// const industrialClient = new IndustrialClient() 
+// clientManager.registerClient(industrialClient)

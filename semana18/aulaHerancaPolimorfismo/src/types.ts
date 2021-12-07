@@ -103,3 +103,25 @@ export class Seller extends Employee {
     }
 }
 
+export class ClientManager {
+    private clients: Client[] = []
+
+    getClientsQuantity():number {
+        return this.clients.length
+    }
+
+    public registerClient(client: Client): void {
+        this.clients.push(client)
+    }
+
+    public calculateBillsOfClient(registrationNumber: number): number {
+        const foundClient = this.clients.find((client) => {
+            return client.registrationNumber === registrationNumber
+        })
+        if (foundClient) {
+            return foundClient.calculateBill()
+        }
+
+        return 0
+    }
+}
