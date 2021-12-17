@@ -16,8 +16,8 @@ const createTables = () => connection
         name VARCHAR(255) UNIQUE NOT NULL,
         price INT NOT NULL,
         image_url VARCHAR(255) NOT NULL
-     );
-`)
+      );
+   `)
    .then(() => { console.log("Tabelas criadas") })
    .catch(printError)
 

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { connection } from "../data/connection";
-import { User } from "../types";
+import { Product } from "../types";
 
-export async function getAllUsers(
+export async function getAllProducts(
    req: Request,
    res: Response
 ): Promise<void> {
@@ -20,7 +20,7 @@ export async function getAllUsers(
 
       const result = await connection.raw(`
          SELECT user.id, user.name, user.email
-         FROM labecommerce_users AS users
+         FROM labecommerce_products AS products
          ORDER BY name
          LIMIT 10
          OFFSET ${offset}
@@ -38,9 +38,9 @@ export async function getAllUsers(
    }
 }
 
-const toFeedItem = (input: any): User => input && {
+const toFeedItem = (input: any): Product => input && {
    id: input.id,
    name: input.name,
-   email: input.email,
-   password: input.password
+   price: input.price,
+   image_url: input.image_url
 }

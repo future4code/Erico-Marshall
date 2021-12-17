@@ -1,14 +1,15 @@
 import { Request, Response } from "express"
 import { connection } from "../data/connection";
+import { User } from "../types";
 
-export const signup = async (req: Request, res: Response) => {
+export const createUser = async (req: Request, res: Response) => {
    try {
 
       const { name, email, password } = req.body
 
       if (!name || !email || !password) {
          res.statusCode = 422
-         throw new Error(" 'name', 'email' e 'password' são obrigatórios")
+         throw new Error("Estão faltando parâmetros")
       }
 
       if (password.length < 6) {
@@ -21,23 +22,24 @@ export const signup = async (req: Request, res: Response) => {
          throw new Error('Formato de email inválido');
       }
 
-      await connection("labecommerce_users")
-         .insert({
-            id: Date.now().toString(),
-            name,
-            email,
-            password
-         })
+      const user: User = {
+         id:Date.now().toString(),
+         name,
+         email,
+         password
+      }
 
-      res.status(201).send("Usuário criado")
+      await connection("labecommerce_users")
+         .insert(user)
+         res.status(201).send({message: "Usuário criado com sucesso!"})
 
    } catch (error) {
 
       if (res.statusCode === 200)
-         res.status(500).send("Um erro inesperado ocorreu =/")
+         res.status(500).send({message: "Um erro inesperado ocorreu =/"})
 
       else
-         res.send(error.message)
+         res.send({message: error.message})
    }
 
 };
