@@ -2,3 +2,4 @@
 node_modules
 package-loc.json
 tsconfig.json
+build
