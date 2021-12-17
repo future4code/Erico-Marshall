@@ -14,6 +14,11 @@ export async function signup(req: Request, res: Response) {
             .send(`Please insert all the requested information`)
         }
 
+        if (password.length < 6) {
+            res.status(422)
+            .send(`User password needs to be at least 6 characters`)
+        }
+
         const userDatabase = new UserDatabase()
         const user = await userDatabase.findUserByEmail(email)
 
