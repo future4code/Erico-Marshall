@@ -230,27 +230,27 @@ describe("index.ts", () => {
         expect(result.americans.allowed.length).toEqual(2)
     })
 
-    test("EXERCÍCIO 6: Create Post", async () => {
-        const post = {
-          id: "id do post",
-          title: "Título",
-          content: "Conteúdo",
-        };
-        try {
-            await createPost(post);
-            const postFromDb = await getPostById(post.id);
+    // test("EXERCÍCIO 6: Create Post", async () => {
+    //     const post = {
+    //       id: "id do post",
+    //       title: "Título",
+    //       content: "Conteúdo",
+    //     };
+    //     try {
+    //         await createPost(post);
+    //         const postFromDb = await getPostById(post.id);
         
-            expect(postFromDb).not.toBe(undefined);
-            expect(postFromDb).toEqual({
-              id: "id do post",
-              title: "Título",
-              content: "Conteúdo",
-            });
-        } catch (error) {
-            console.log(error)
-        }
-
-    });
+    //         expect(postFromDb).not.toBe(undefined);
+    //         expect(postFromDb).toEqual({
+    //           id: "id do post",
+    //           title: "Título",
+    //           content: "Conteúdo",
+    //         });
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // });
+    
 
     afterAll(() => {
         connection.destroy()
